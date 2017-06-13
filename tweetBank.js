@@ -1,6 +1,8 @@
+'use strict';
+
 const _ = require('lodash');
 
-const data = [];
+var data = [];
 
 function add(name, content) {
   data.push({ name: name, content: content });
@@ -34,3 +36,26 @@ const getFakeTweet = function() {
 for (let i = 0; i < 10; i++) {
   module.exports.add(getFakeName(), getFakeTweet());
 }
+
+data = [ { name: 'Ben OLogn',
+    content: 'Fullstack Academy is impressive! The instructors are just so amazing. #fullstacklove #codedreams' },
+  { name: 'Ashi Stackson',
+    content: 'Fullstack Academy is funny! The instructors are just so awesome. #fullstacklove #codedreams' },
+  { name: 'Ben Dunderproto',
+    content: 'Fullstack Academy is amazing! The instructors are just so amazing. #fullstacklove #codedreams' },
+  { name: 'Omri McQueue',
+    content: 'Fullstack Academy is amazing! The instructors are just so sweet. #fullstacklove #codedreams' },
+  { name: 'Joe Docsreader',
+    content: 'Fullstack Academy is amazing! The instructors are just so mindblowing. #fullstacklove #codedreams' },
+  { name: 'Ashi Binder',
+    content: 'Fullstack Academy is amazing! The instructors are just so amazing. #fullstacklove #codedreams' },
+  { name: 'Omri OLogn',
+    content: 'Fullstack Academy is awesome! The instructors are just so awesome. #fullstacklove #codedreams' },
+  { name: 'Dan Ecma',
+    content: 'Fullstack Academy is impressive! The instructors are just so wonderful. #fullstacklove #codedreams' },
+  { name: 'David McQueue',
+    content: 'Fullstack Academy is cool! The instructors are just so mindblowing. #fullstacklove #codedreams' },
+  { name: 'David Binder',
+    content: 'Fullstack Academy is funny! The instructors are just so sweet. #fullstacklove #codedreams' } ];
+
+console.log(data);

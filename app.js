@@ -35,16 +35,30 @@ app.listen(3000, () => {
   console.log('server listening');
 });
 
-// RESPOND TO REQUESTS
-app.use((request, response, next) => {
-  // LOG EACH REQUEST TO CONSOLE
-  var requestParams = Object.keys(request.params).length === 0 ? "" : request.params;
-  var requestQuery = Object.keys(request.query).length === 0 ? "" : request.query;
-  console.log(chalk.magenta(request.method), chalk.yellow(request.path), requestQuery, chalk.cyan(requestParams), response.statusCode);
-  // Why doesn't chalk work with objects, such as request.query?
-  // var queryString = request.query.toString();
-  // console.log("queryString: ",queryString);
+// // RESPOND TO REQUESTS
+// app.use((request, response, next) => {
+//   // LOG EACH REQUEST TO CONSOLE
+//   var requestParams = Object.keys(request.params).length === 0 ? "" : request.params;
+//   var requestQuery = Object.keys(request.query).length === 0 ? "" : request.query;
+//   // Per review video: log response only after it's been completed
+//   response.on('finish', () => {
+//     console.log(chalk.magenta(request.method), chalk.yellow(request.path), requestQuery, chalk.cyan(requestParams), response.statusCode);
+//   }
+//   // Why doesn't chalk work with objects, such as request.query?
+//   // var queryString = request.query.toString();
+//   // console.log("queryString: ",queryString);
 
+//   // TEST NUNJUCKS INTEGRATION
+//   // response.render( 'index', {title: 'Hall of Fame', people: people} );
+//   response.render( 'index', locals );
+//   next();
+// })
+
+// An easier way to do all of the above, per review video:
+const morgan = require('morgan');
+app.use(morgan('dev'));
+
+app.use((request, response, next) => {
   // TEST NUNJUCKS INTEGRATION
   // response.render( 'index', {title: 'Hall of Fame', people: people} );
   response.render( 'index', locals );
@@ -57,10 +71,10 @@ app.use((request, response, next) => {
 // })
 
 // app.get('/', (request, response) => {
-//   response.render('Welcome to Twitter! This is a new get.response.');
+//   response.send('Welcome to Twitter! This is a new get.response.');
 // });
 
 // app.get('/news', (request, response) => {
-//   response.render('You are now in the /news path. And /news is now NEW.');
+//   response.send('You are now in the /news path. And /news is now NEW.');
 // });
 
