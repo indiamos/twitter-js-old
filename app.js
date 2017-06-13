@@ -61,7 +61,10 @@ app.use(morgan('dev'));
 app.use((request, response, next) => {
   // TEST NUNJUCKS INTEGRATION
   // response.render( 'index', {title: 'Hall of Fame', people: people} );
-  response.render( 'index', locals );
+  response.render( 'index', locals, (err, output) => {
+    if (err) return console.error(err);
+    console.log(output);
+  });
   next();
 })
 
